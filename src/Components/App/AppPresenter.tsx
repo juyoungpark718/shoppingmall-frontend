@@ -1,14 +1,25 @@
-import Proptypes from "prop-types";
+// import Proptypes from "prop-types";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import React from "react";
+import Header from "../Header";
+import Home from "../../Routes/Home";
+import Login from "../../Routes/Login";
+import SignUpForm from "../../Routes/SignUp";
 
-interface IProps {
-  isLoggedIn: boolean;
-}
+interface IProps {}
 
-const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) =>
-  isLoggedIn ? <span>login!</span> : <span>log out!</span>;
+const AppPresenter: React.SFC<IProps> = () => (
+  <BrowserRouter>
+    <Header />
+    <Switch>
+      <Route component={Home} exact path={`/`} />
+      <Route component={Login} exact path={`/login`} />
+      <Route component={SignUpForm} exact path={`/signup`} />
+      <Redirect to={`/`} />
+    </Switch>
+  </BrowserRouter>
+);
 
-AppPresenter.propTypes = {
-  isLoggedIn: Proptypes.bool.isRequired,
-};
+AppPresenter.propTypes = {};
+
 export default AppPresenter;
