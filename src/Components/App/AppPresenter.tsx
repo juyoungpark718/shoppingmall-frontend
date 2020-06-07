@@ -1,6 +1,7 @@
 // import Proptypes from "prop-types";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import React from "react";
+// import PropTypes from "prop-types";
 import Header from "../Header";
 import Home from "../../Routes/Home";
 import Login from "../../Routes/Login";
@@ -8,7 +9,7 @@ import SignUpForm from "../../Routes/SignUp";
 
 interface IProps {}
 
-const AppPresenter: React.SFC<IProps> = () => (
+const AppPresenter: React.FC<IProps> = () => (
   <BrowserRouter>
     <Header />
     <Switch>

@@ -1,12 +1,7 @@
 import React from "react";
-import Header from "../../Components/Header";
 
 const HomePresenter: React.FC = () => {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <div>홈입니다.</div>;
 };
 
 export default HomePresenter;

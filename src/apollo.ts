@@ -26,8 +26,10 @@ const client = new ApolloClient({
           localStorage.getItem("jwt");
           cache.writeDate({
             data: {
-              __typename: "Auth",
-              isLoggedIn: false,
+              auth: {
+                __typename: "Auth",
+                isLoggedIn: false,
+              },
             },
           });
           return null;
