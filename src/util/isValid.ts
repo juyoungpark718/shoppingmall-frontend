@@ -4,3 +4,9 @@ export const isEmail = (email: string): boolean => {
   );
   return isValid;
 };
+
+export const isValidForm = (
+  email: string,
+  password: string,
+  name: string
+) => {};

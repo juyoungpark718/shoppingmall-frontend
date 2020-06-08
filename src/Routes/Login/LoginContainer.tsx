@@ -31,11 +31,7 @@ const LoginFormContainer: React.FC<IProps> = ({ history }) => {
     },
   });
 
-  const submitForm = (
-    event: React.FormEvent<HTMLFormElement>,
-    email: string,
-    password: string
-  ): void => {
+  const submitForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (isEmail(email)) {
       emailSignIn({ variables: { email, password } });
@@ -51,7 +47,7 @@ const LoginFormContainer: React.FC<IProps> = ({ history }) => {
       setEmail={(e) => setEmail(e.target.value)}
       password={password}
       setPassword={(e) => setPassword(e.target.value)}
-      submitForm={(e) => submitForm(e, email, password)}
+      submitForm={(e) => submitForm(e)}
     />
   );
 };
