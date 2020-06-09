@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 import LoginPresenter from "./LoginPresenter";
-import { isEmail } from "../../util/isValid";
+import { isValidForm, validType } from "../../util/isValid";
 import { toast } from "react-toastify";
 import { SIGN_IN } from "./LoginQueries";
 import { LOG_USER_IN } from "../../sharedQueries";
@@ -33,11 +33,12 @@ const LoginFormContainer: React.FC<IProps> = ({ history }) => {
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (isEmail(email)) {
+    const isEmail = isValidForm(validType.EMAIL, email);
+    if (isEmail) {
       emailSignIn({ variables: { email, password } });
       setPassword("");
     } else {
-      toast.error("Not valid Email!!");
+      toast.error("Not valid email");
     }
   };
 

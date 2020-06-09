@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Input from "../../Components/Input";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const Form = styled.form``;
 const Button = styled.button``;
@@ -13,42 +11,59 @@ interface IProps {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
   onSubmitForm: (event: React.FormEvent<HTMLFormElement>) => void;
-  onChangeBirth: (
-    _,
-    event: React.SyntheticEvent<HTMLSelectElement, Event>
+  onBlurIsValid: (
+    event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
   email: string;
   password: string;
+  confirmPassword: string;
   name: string;
   gender: string;
   phoneNumber: string;
   address: string;
   detailedAddress: string;
-  dateOfBirth: Date;
+  yearOfBirth: string;
+  monthOfBirth: string;
+  dayOfBirth: string;
 }
 
 const SignUpPresenter: React.FC<IProps> = ({
   email,
   password,
+  confirmPassword,
   name,
   gender,
   phoneNumber,
   address,
   detailedAddress,
-  dateOfBirth,
+  yearOfBirth,
+  monthOfBirth,
+  dayOfBirth,
   onChangeInput,
   onSubmitForm,
-  onChangeBirth,
+  onBlurIsValid,
 }) => {
   return (
     <div>
       <Form onSubmit={onSubmitForm}>
-        <Input name={`email`} value={email} onChange={onChangeInput} />
+        <Input
+          name={`email`}
+          value={email}
+          onChange={onChangeInput}
+          onBlur={onBlurIsValid}
+        />
         <Input
           type={`password`}
           name={`password`}
           value={password}
           onChange={onChangeInput}
+        />
+        <Input
+          type={`password`}
+          name={`confirmPassword`}
+          value={confirmPassword}
+          onChange={onChangeInput}
+          onBlur={onBlurIsValid}
         />
         <Input name={`name`} value={name} onChange={onChangeInput} />
         <select name={`gender`} value={gender} onChange={onChangeInput}>
@@ -59,6 +74,7 @@ const SignUpPresenter: React.FC<IProps> = ({
           name={`phoneNumber`}
           value={phoneNumber}
           onChange={onChangeInput}
+          onBlur={onBlurIsValid}
         />
         <Input name={`address`} value={address} onChange={onChangeInput} />
         <Input
@@ -66,7 +82,27 @@ const SignUpPresenter: React.FC<IProps> = ({
           value={detailedAddress}
           onChange={onChangeInput}
         />
-        <DatePicker selected={dateOfBirth} onChange={onChangeBirth} />
+        <Input
+          name={`yearOfBirth`}
+          value={yearOfBirth}
+          placeholder={`년도(4자리)`}
+          onChange={onChangeInput}
+          onBlur={onBlurIsValid}
+        />
+        <Input
+          name={`monthOfBirth`}
+          value={monthOfBirth}
+          placeholder={`월`}
+          onChange={onChangeInput}
+          onBlur={onBlurIsValid}
+        />
+        <Input
+          name={`dayOfBirth`}
+          value={dayOfBirth}
+          placeholder={`일`}
+          onChange={onChangeInput}
+          onBlur={onBlurIsValid}
+        />
         <Button>회원가입</Button>
       </Form>
     </div>
@@ -76,15 +112,18 @@ const SignUpPresenter: React.FC<IProps> = ({
 SignUpPresenter.propTypes = {
   onChangeInput: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
-  onChangeBirth: PropTypes.func.isRequired,
+  onBlurIsValid: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   detailedAddress: PropTypes.string.isRequired,
-  dateOfBirth: PropTypes.instanceOf(Date).isRequired,
+  yearOfBirth: PropTypes.string.isRequired,
+  monthOfBirth: PropTypes.string.isRequired,
+  dayOfBirth: PropTypes.string.isRequired,
 };
 
 export default SignUpPresenter;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.input`
@@ -26,6 +27,7 @@ interface IProps {
   value: string;
   name?: string;
   onChange: any;
+  onBlur?: any;
   className?: string;
 }
 
@@ -34,6 +36,7 @@ const Input: React.FC<IProps> = ({
   type = "text",
   name = "",
   onChange,
+  onBlur,
   value,
   required = true,
   placeholder = "",
@@ -46,7 +49,19 @@ const Input: React.FC<IProps> = ({
     value={value}
     required={required}
     placeholder={placeholder}
+    onBlur={onBlur}
   />
 );
+
+Input.propTypes = {
+  className: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.any.isRequired,
+  onBlur: PropTypes.any,
+};
 
 export default Input;
