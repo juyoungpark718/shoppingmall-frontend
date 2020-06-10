@@ -4,8 +4,9 @@ import { RouteComponentProps } from "react-router-dom";
 import LoginPresenter from "./LoginPresenter";
 import { isValidForm, validType } from "../../util/isValid";
 import { toast } from "react-toastify";
-import { SIGN_IN } from "./LoginQueries";
+import { SIGN_IN } from "./LoginQueries.queries";
 import { LOG_USER_IN } from "../../sharedQueries";
+import { emailSignIn, emailSignInVariables } from "../../types/api";
 
 interface IProps extends RouteComponentProps {}
 
@@ -13,23 +14,26 @@ const LoginFormContainer: React.FC<IProps> = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [logUserIn] = useMutation(LOG_USER_IN);
-  const [emailSignIn] = useMutation(SIGN_IN, {
-    onCompleted({ EmailSignIn }) {
-      if (EmailSignIn.ok) {
-        history.push({
-          pathname: `/`,
-        });
-        logUserIn({
-          variables: {
-            token: EmailSignIn.token,
-          },
-        });
-      } else {
-        toast.error(EmailSignIn.error);
-        setPassword("");
-      }
-    },
-  });
+  const [emailSignIn] = useMutation<emailSignIn, emailSignInVariables>(
+    SIGN_IN,
+    {
+      onCompleted({ EmailSignIn }) {
+        if (EmailSignIn.ok) {
+          history.push({
+            pathname: `/`,
+          });
+          logUserIn({
+            variables: {
+              token: EmailSignIn.token,
+            },
+          });
+        } else {
+          toast.error(EmailSignIn.error);
+          setPassword("");
+        }
+      },
+    }
+  );
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();

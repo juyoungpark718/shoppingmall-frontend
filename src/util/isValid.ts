@@ -31,11 +31,6 @@ const isValidDate = (dateString: string): boolean => {
   return day > 0 && day <= monthLength[month - 1];
 };
 
-type FormResponse = {
-  ok: boolean;
-  error: string | null;
-};
-
 export const isValidForm = (type: string, value: string): boolean => {
   let isValid = false;
   switch (type) {

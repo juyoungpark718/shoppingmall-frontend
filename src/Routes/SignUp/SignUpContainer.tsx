@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import SignUpPresenter from "./SignUpPresenter";
 import { useMutation } from "react-apollo";
-import { SIGN_UP } from "./SignUpQueries";
+import { SIGN_UP } from "./SignUpQueries.queries";
 import { toast } from "react-toastify";
 import { LOG_USER_IN } from "../../sharedQueries";
 import {
@@ -12,12 +12,13 @@ import {
   isMonth,
   isDay,
 } from "../../util/isValid";
+import { signUp, signUpVariables } from "../../types/api";
 
 interface IProps extends RouteComponentProps {}
 
 const SignUpContainer: React.FC<IProps> = ({ history }) => {
   const [singIn] = useMutation(LOG_USER_IN);
-  const [signUp] = useMutation(SIGN_UP, {
+  const [signUp] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted({ EmailSignUp }) {
       if (EmailSignUp.ok) {
         history.push({
