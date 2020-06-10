@@ -7,21 +7,23 @@ import theme from "../../styled-config/theme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AppContainer = ({ data }: any) => (
-  <ThemeProvider theme={theme}>
-    <AppPresenter />
-    <ToastContainer
-      position="top-center"
-      autoClose={2000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-    />
-  </ThemeProvider>
-);
+const AppContainer = ({ data }: any) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <AppPresenter isLoggedIn={data.auth.isLoggedIn} />
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </ThemeProvider>
+  );
+};
 
 export default graphql(IS_LOGGED_IN)(AppContainer);

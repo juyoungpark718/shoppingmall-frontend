@@ -18,7 +18,7 @@ interface IProps extends RouteComponentProps {}
 
 const SignUpContainer: React.FC<IProps> = ({ history }) => {
   const [singIn] = useMutation(LOG_USER_IN);
-  const [signUp] = useMutation<signUp, signUpVariables>(SIGN_UP, {
+  const [userSignUp] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted({ EmailSignUp }) {
       if (EmailSignUp.ok) {
         history.push({
@@ -60,7 +60,7 @@ const SignUpContainer: React.FC<IProps> = ({ history }) => {
     if (!isValidForm(validType.DATE, date)) {
       toast.error("생년월일을 다시 확인해주세요.");
     } else {
-      signUp({ variables: { ...inputs, dateOfBirth: date } });
+      userSignUp({ variables: { ...inputs, dateOfBirth: date } });
     }
   };
 

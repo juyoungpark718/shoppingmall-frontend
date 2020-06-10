@@ -14,32 +14,29 @@ const LoginFormContainer: React.FC<IProps> = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [logUserIn] = useMutation(LOG_USER_IN);
-  const [emailSignIn] = useMutation<emailSignIn, emailSignInVariables>(
-    SIGN_IN,
-    {
-      onCompleted({ EmailSignIn }) {
-        if (EmailSignIn.ok) {
-          history.push({
-            pathname: `/`,
-          });
-          logUserIn({
-            variables: {
-              token: EmailSignIn.token,
-            },
-          });
-        } else {
-          toast.error(EmailSignIn.error);
-          setPassword("");
-        }
-      },
-    }
-  );
+  const [userSignIn] = useMutation<emailSignIn, emailSignInVariables>(SIGN_IN, {
+    onCompleted({ EmailSignIn }) {
+      if (EmailSignIn.ok) {
+        history.push({
+          pathname: `/`,
+        });
+        logUserIn({
+          variables: {
+            token: EmailSignIn.token,
+          },
+        });
+      } else {
+        toast.error(EmailSignIn.error);
+        setPassword("");
+      }
+    },
+  });
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const isEmail = isValidForm(validType.EMAIL, email);
     if (isEmail) {
-      emailSignIn({ variables: { email, password } });
+      userSignIn({ variables: { email, password } });
       setPassword("");
     } else {
       toast.error("Not valid email");

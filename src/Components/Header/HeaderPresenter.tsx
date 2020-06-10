@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -15,38 +16,78 @@ const Content = styled.div`
   align-items: center;
 `;
 
-const Menu = styled(Content)`
-  width: 150px;
-  display: flex;
-  justify-content: space-between;
+const Menu = styled(Content)``;
+
+const StyledLink = styled(Link)`
+  margin-right: 0.5rem;
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 const Span = styled.span`
   font-size: 0.8rem;
 `;
 
-interface IProps {}
+interface IProps {
+  isLoggedIn: boolean;
+  handleLogOut: () => void;
+}
 
-const Header: React.FC<IProps> = () => {
+const HeaderPresenter: React.FC<IProps> = ({ isLoggedIn, handleLogOut }) => {
   return (
     <Container>
       <Content>소셜</Content>
       <Content>
-        <Link to={`/`}>제목</Link>
+        <StyledLink to={`/`}>제목</StyledLink>
       </Content>
       <Menu>
-        <Link to={`/login`}>
-          <Span>로그인</Span>
-        </Link>
-        <Link to={`/signup`}>
-          <Span>회원가입</Span>
-        </Link>
-        <Link to={`#`}>
+        {isLoggedIn ? (
+          <PrivateMenu handleLogOut={handleLogOut} />
+        ) : (
+          <PublicMenu />
+        )}
+        <StyledLink to={`#`}>
           <Span>장바구니</Span>
-        </Link>
+        </StyledLink>
       </Menu>
     </Container>
   );
 };
 
-export default Header;
+const PublicMenu: React.FC = () => (
+  <>
+    <StyledLink to={`/login`}>
+      <Span>로그인</Span>
+    </StyledLink>
+    <StyledLink to={`/signup`}>
+      <Span>회원가입</Span>
+    </StyledLink>
+  </>
+);
+
+interface IPropsPrivate {
+  handleLogOut: () => void;
+}
+
+const PrivateMenu: React.FC<IPropsPrivate> = ({ handleLogOut }) => (
+  <>
+    <StyledLink to={`#`}>
+      <Span>회원정보 뜨는곳</Span>
+    </StyledLink>
+    <StyledLink to={`/signout`} onClick={handleLogOut}>
+      <Span>로그아웃</Span>
+    </StyledLink>
+  </>
+);
+
+HeaderPresenter.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  handleLogOut: PropTypes.func.isRequired,
+};
+
+PrivateMenu.propTypes = {
+  handleLogOut: PropTypes.func.isRequired,
+};
+
+export default HeaderPresenter;
