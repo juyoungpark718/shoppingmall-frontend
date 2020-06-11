@@ -72,7 +72,7 @@ interface IPropsPrivate {
 
 const PrivateMenu: React.FC<IPropsPrivate> = ({ handleLogOut }) => (
   <>
-    <StyledLink to={`#`}>
+    <StyledLink to={`/profile`}>
       <Span>회원정보 뜨는곳</Span>
     </StyledLink>
     <StyledLink to={`/signout`} onClick={handleLogOut}>

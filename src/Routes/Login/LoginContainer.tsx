@@ -11,8 +11,8 @@ import { emailSignIn, emailSignInVariables } from "../../types/api";
 interface IProps extends RouteComponentProps {}
 
 const LoginFormContainer: React.FC<IProps> = ({ history }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [logUserIn] = useMutation(LOG_USER_IN);
   const [userSignIn] = useMutation<emailSignIn, emailSignInVariables>(SIGN_IN, {
     onCompleted({ EmailSignIn }) {

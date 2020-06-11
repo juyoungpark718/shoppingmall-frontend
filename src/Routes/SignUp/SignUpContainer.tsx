@@ -14,6 +14,20 @@ import {
 } from "../../util/isValid";
 import { signUp, signUpVariables } from "../../types/api";
 
+interface IStates {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+  gender: string;
+  phoneNumber: string;
+  address: string;
+  detailedAddress: string;
+  yearOfBirth: string;
+  monthOfBirth: string;
+  dayOfBirth: string;
+}
+
 interface IProps extends RouteComponentProps {}
 
 const SignUpContainer: React.FC<IProps> = ({ history }) => {
@@ -31,7 +45,7 @@ const SignUpContainer: React.FC<IProps> = ({ history }) => {
     },
   });
 
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState<IStates>({
     email: "",
     password: "",
     confirmPassword: "",

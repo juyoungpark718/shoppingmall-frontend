@@ -5,6 +5,7 @@ import Header from "../Header";
 import Home from "../../Routes/Home";
 import Login from "../../Routes/Login";
 import SignUpForm from "../../Routes/SignUp";
+import UserProfile from "../../Routes/UserProfile";
 import { Helmet } from "react-helmet";
 
 interface IProps {
@@ -27,6 +28,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => (
 const PrivateRoute: React.FC = () => (
   <Switch>
     <Route component={Home} exact path={`/`} />
+    <Route component={UserProfile} exact path={`/profile/`} />
     <Redirect from={`*`} to={`/`} />
   </Switch>
 );
