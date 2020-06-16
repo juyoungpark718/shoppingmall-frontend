@@ -7,6 +7,13 @@ import Login from "../../Routes/Login";
 import SignUpForm from "../../Routes/SignUp";
 import UserProfile from "../../Routes/UserProfile";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
+
+const Container = styled.div`
+  max-width: 100%;
+  min-height: 80vh;
+  margin: 0 auto;
+`;
 
 interface IProps {
   isLoggedIn: boolean;
@@ -21,7 +28,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => (
       />
     </Helmet>
     <Header isLoggedIn={isLoggedIn} />
-    {isLoggedIn ? <PrivateRoute /> : <PublicRoute />}
+    <Container>{isLoggedIn ? <PrivateRoute /> : <PublicRoute />}</Container>
   </BrowserRouter>
 );
 

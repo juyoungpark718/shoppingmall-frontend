@@ -2,10 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import headerImg from "../../images/dalnara/header.png";
+import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
 
 const Container = styled.div`
   width: 100%;
-  height: 100px;
+  height: 10vh;
   display: flex;
   justify-content: space-around;
 `;
@@ -14,6 +16,16 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Column = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const HeaderImg = styled.img`
+  width: 200px;
 `;
 
 const Menu = styled(Content)``;
@@ -37,9 +49,20 @@ interface IProps {
 const HeaderPresenter: React.FC<IProps> = ({ isLoggedIn, handleLogOut }) => {
   return (
     <Container>
-      <Content>소셜</Content>
       <Content>
-        <StyledLink to={`/`}>제목</StyledLink>
+        <Column>
+          <Link to={`#`}>
+            <FaFacebook size={20} />
+          </Link>
+          <Link to={`#`}>
+            <FaInstagramSquare size={22} />
+          </Link>
+        </Column>
+      </Content>
+      <Content>
+        <StyledLink to={`/`}>
+          <HeaderImg src={headerImg} alt={`dalnara`} />
+        </StyledLink>
       </Content>
       <Menu>
         {isLoggedIn ? (
@@ -70,16 +93,18 @@ interface IPropsPrivate {
   handleLogOut: () => void;
 }
 
-const PrivateMenu: React.FC<IPropsPrivate> = ({ handleLogOut }) => (
-  <>
-    <StyledLink to={`/profile`}>
-      <Span>회원정보 뜨는곳</Span>
-    </StyledLink>
-    <StyledLink to={`/signout`} onClick={handleLogOut}>
-      <Span>로그아웃</Span>
-    </StyledLink>
-  </>
-);
+const PrivateMenu: React.FC<IPropsPrivate> = ({ handleLogOut }) => {
+  return (
+    <>
+      <StyledLink to={`/profile`}>
+        <Span>회원정보</Span>
+      </StyledLink>
+      <StyledLink to={`/signout`} onClick={handleLogOut}>
+        <Span>로그아웃</Span>
+      </StyledLink>
+    </>
+  );
+};
 
 HeaderPresenter.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,

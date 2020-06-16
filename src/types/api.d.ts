@@ -7,11 +7,18 @@
 // GraphQL mutation operation: emailSignIn
 // ====================================================
 
+export interface emailSignIn_EmailSignIn_user {
+  __typename: "User";
+  name: string;
+  email: string;
+}
+
 export interface emailSignIn_EmailSignIn {
   __typename: "EmailSignInResponse";
   ok: boolean;
   error: string | null;
   token: string | null;
+  user: emailSignIn_EmailSignIn_user | null;
 }
 
 export interface emailSignIn {
@@ -60,37 +67,6 @@ export interface signUpVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getUserProfile
-// ====================================================
-
-export interface getUserProfile_GetUserProfile_user {
-  __typename: "User";
-  name: string;
-  email: string;
-  gender: string;
-  phoneNumber: string;
-  address: string;
-  detailedAddress: string;
-  dateOfBirth: string;
-}
-
-export interface getUserProfile_GetUserProfile {
-  __typename: "GetUserProfileResponse";
-  ok: boolean;
-  user: getUserProfile_GetUserProfile_user | null;
-  error: string | null;
-}
-
-export interface getUserProfile {
-  GetUserProfile: getUserProfile_GetUserProfile;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: editUserProfile
 // ====================================================
 
@@ -107,6 +83,37 @@ export interface editUserProfile {
 export interface editUserProfileVariables {
   address: string;
   detailedAddress: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: getUserProfile
+// ====================================================
+
+export interface getUserProfile_GetUserProfile_user {
+  __typename: "User";
+  name: string;
+  email: string;
+  gender: string;
+  phoneNumber: string;
+  address: string;
+  detailedAddress: string | null;
+  dateOfBirth: string;
+}
+
+export interface getUserProfile_GetUserProfile {
+  __typename: "GetUserProfileResponse";
+  ok: boolean;
+  user: getUserProfile_GetUserProfile_user | null;
+  error: string | null;
+}
+
+export interface getUserProfile {
+  GetUserProfile: getUserProfile_GetUserProfile;
 }
 
 /* tslint:disable */

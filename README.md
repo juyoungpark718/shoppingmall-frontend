@@ -20,5 +20,5 @@ To do List
 - User
   - [ ] Email Verification(나중에 할거임.)
   - [x] Sign Out
-  - [ ] Edit User Info
+  - [x] Edit User Info
   - [ ] Withdraw this site.

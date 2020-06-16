@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import UserProfilePresenter from "./UserProfilePresenter";
 import { useQuery, useMutation } from "react-apollo";
-import {
-  GET_USER_PROFILE,
-  EDIT_USER_PROFILE,
-} from "./UserProfileQueries.queries";
+import { EDIT_USER_PROFILE } from "./UserProfileQueries.queries";
 import {
   getUserProfile,
   editUserProfile,
   editUserProfileVariables,
 } from "../../types/api";
 import { toast } from "react-toastify";
+import { LOG_USER_OUT } from "../../sharedQueries.locals";
+import { GET_USER_PROFILE } from "../../sharedQueries.queries";
 
 interface IStates {
   email: string;
@@ -34,12 +33,24 @@ const UserProfileContainer: React.FC = () => {
     dateOfBirth: "",
     isChangeAddress: false,
   });
-
+  const [logout] = useMutation(LOG_USER_OUT);
   useQuery<getUserProfile>(GET_USER_PROFILE, {
     onCompleted: ({ GetUserProfile: { user } }) => {
       if (user) {
-        setInputs({ ...user, isChangeAddress: inputs.isChangeAddress });
+        setInputs({
+          name: user.name,
+          email: user.email,
+          gender: user.gender,
+          phoneNumber: user.phoneNumber,
+          address: user.address,
+          detailedAddress: user.detailedAddress || "",
+          dateOfBirth: user.dateOfBirth,
+          isChangeAddress: inputs.isChangeAddress,
+        });
       }
+    },
+    onError: () => {
+      logout();
     },
   });
 

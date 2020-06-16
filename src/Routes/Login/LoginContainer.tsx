@@ -5,7 +5,7 @@ import LoginPresenter from "./LoginPresenter";
 import { isValidForm, validType } from "../../util/isValid";
 import { toast } from "react-toastify";
 import { SIGN_IN } from "./LoginQueries.queries";
-import { LOG_USER_IN } from "../../sharedQueries";
+import { LOG_USER_IN } from "../../sharedQueries.locals";
 import { emailSignIn, emailSignInVariables } from "../../types/api";
 
 interface IProps extends RouteComponentProps {}

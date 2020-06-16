@@ -4,7 +4,7 @@ import SignUpPresenter from "./SignUpPresenter";
 import { useMutation } from "react-apollo";
 import { SIGN_UP } from "./SignUpQueries.queries";
 import { toast } from "react-toastify";
-import { LOG_USER_IN } from "../../sharedQueries";
+import { LOG_USER_IN } from "../../sharedQueries.locals";
 import {
   isValidForm,
   validType,

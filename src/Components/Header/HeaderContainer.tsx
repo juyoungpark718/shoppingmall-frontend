@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import HeaderPresenter from "./HeaderPresenter";
 import { useMutation } from "react-apollo";
-import { LOG_USER_OUT } from "../../sharedQueries";
+import { LOG_USER_OUT } from "../../sharedQueries.locals";
 
 interface IProps {
   isLoggedIn: boolean;
@@ -11,7 +11,7 @@ interface IProps {
 const HeaderContainer: React.FC<IProps> = ({ isLoggedIn }) => {
   const [logOut] = useMutation(LOG_USER_OUT);
   const handleLogOut = () => {
-    logOut();
+    logOut({});
   };
   return (
     <HeaderPresenter
