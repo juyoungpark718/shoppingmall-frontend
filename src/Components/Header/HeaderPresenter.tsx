@@ -7,8 +7,14 @@ import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
 
 const Container = styled.div`
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex: 2;
   justify-content: space-around;
 `;
 
@@ -31,7 +37,8 @@ const HeaderImg = styled.img`
 const Menu = styled(Content)``;
 
 const StyledLink = styled(Link)`
-  margin-right: 0.5rem;
+  font-weight: inherit;
+  margin-right: 1rem;
   &:last-child {
     margin-right: 0;
   }
@@ -39,6 +46,19 @@ const StyledLink = styled(Link)`
 
 const Span = styled.span`
   font-size: 0.8rem;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  background-color: #edc933;
+`;
+
+const NavContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 interface IProps {
@@ -49,31 +69,42 @@ interface IProps {
 const HeaderPresenter: React.FC<IProps> = ({ isLoggedIn, handleLogOut }) => {
   return (
     <Container>
-      <Content>
-        <Column>
-          <Link to={`#`}>
-            <FaFacebook size={20} />
-          </Link>
-          <Link to={`#`}>
-            <FaInstagramSquare size={22} />
-          </Link>
-        </Column>
-      </Content>
-      <Content>
-        <StyledLink to={`/`}>
-          <HeaderImg src={headerImg} alt={`dalnara`} />
-        </StyledLink>
-      </Content>
-      <Menu>
-        {isLoggedIn ? (
-          <PrivateMenu handleLogOut={handleLogOut} />
-        ) : (
-          <PublicMenu />
-        )}
-        <StyledLink to={`#`}>
-          <Span>장바구니</Span>
-        </StyledLink>
-      </Menu>
+      <Header>
+        <Content>
+          <Column>
+            <Link to={`#`}>
+              <FaFacebook size={20} />
+            </Link>
+            <Link to={`#`}>
+              <FaInstagramSquare size={22} />
+            </Link>
+          </Column>
+        </Content>
+        <Content>
+          <StyledLink to={`/`}>
+            <HeaderImg src={headerImg} alt={`dalnara`} />
+          </StyledLink>
+        </Content>
+        <Menu>
+          {isLoggedIn ? (
+            <PrivateMenu handleLogOut={handleLogOut} />
+          ) : (
+            <PublicMenu />
+          )}
+          <StyledLink to={`#`}>
+            <Span>장바구니</Span>
+          </StyledLink>
+        </Menu>
+      </Header>
+      <Nav>
+        <NavContent>
+          <StyledLink to={`#`}>달나라 이야기</StyledLink>
+          <StyledLink to={`#`}>귀걸이 정기구독</StyledLink>
+          <StyledLink to={`#`}>이달의 주제</StyledLink>
+          <StyledLink to={`#`}>달나라 스토어</StyledLink>
+          <StyledLink to={`#`}>멤버쉽 라운지</StyledLink>
+        </NavContent>
+      </Nav>
     </Container>
   );
 };

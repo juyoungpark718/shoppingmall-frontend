@@ -18,7 +18,9 @@ import {
 } from "../../Components/Fake/Section";
 import Carousel from "../../Components/Carousel/Carousel";
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #efefef;
+`;
 
 const HomePresenter: React.FC = () => {
   return (
@@ -86,7 +88,13 @@ const HomePresenter: React.FC = () => {
           </div>
         </Content2>
       </Section>
-      <Section></Section>
+      <Section>
+        <Text2>
+          <h3>매달 더 많은 분들과</h3>
+          <h3>함께하고 있어요 :)</h3>
+        </Text2>
+        <Carousel />
+      </Section>
       <Section>1</Section>
       <Section>1</Section>
     </Container>

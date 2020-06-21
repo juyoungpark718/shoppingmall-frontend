@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const Section = styled.section<any>`
   min-height: 750px;
+  margin-bottom: 1rem;
   background-image: url(${(props) => (props.imgUrl ? props.imgUrl : null)});
+  background-color: white;
   background-position: center;
   h1 {
     font-size: 6rem;
@@ -34,6 +36,8 @@ export const Content = styled.div<any>`
     border: none;
     font-weight: 600;
     margin: 0 auto;
+    border: 1px solid ${(props) => (props.dark ? "#0b004f" : "white")};
+
     &:hover {
       border: 1px solid ${(props) => (props.dark ? "white" : "#0b004f")};
       background: ${(props) => (props.dark ? "white" : "#0b004f")};
